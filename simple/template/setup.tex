@@ -1,0 +1,50 @@
+\documentclass{scrartcl}
+\usepackage[a4paper, left=3cm, right=3cm, top=2.4cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{url}
+%Code
+\usepackage{listings}
+\usepackage{color}
+\definecolor{defcolor}{rgb}{0,0.6,0}
+\definecolor{commentcolor}{rgb}{0.6,0.6,0.6}
+\definecolor{stringcolor}{rgb}{0.8,0,0}
+\lstset{frame=single,
+	language=C,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{defcolor},
+	commentstyle=\color{commentcolor},
+	stringstyle=\color{stringcolor},	
+	breaklines=false,
+	breakatwhitespace=false,
+	tabsize=3,
+	captionpos=b
+}
+%Images
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+%biblatex
+\usepackage[
+backend=bibtex,
+style=verbose,
+maxbibnames=99,
+]{biblatex}
+\addbibresource{Ausarbeitung.bib}
+%URLs
+\usepackage[table, usenames, dvipsnames]{xcolor}
+\definecolor{UrlColor}{HTML}{155196}    % url color
+\definecolor{CiteColor}{HTML}{6200d9}	% cite color (footnotes)
+\definecolor{TocColor}{HTML}{003F61}	% toc color
+\usepackage[%
+colorlinks={true},
+linkcolor = TocColor,
+urlcolor = UrlColor,
+citecolor = CiteColor,
+%breaklinks=true,
+]{hyperref}
