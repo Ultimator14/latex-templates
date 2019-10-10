@@ -1,0 +1,49 @@
+\input{template/setup}
+
+\begin{document}
+	
+\frontmatter 			%KOMA: Roman page numbers; only available in scrbook
+
+\input{template/titlepage}
+
+\begingroup			% Begin group to disable chapter auto newpage
+\let\cleardoublepage\relax	% disable newpage
+
+\input{chapters/00.abstract}
+\newpage
+\input{chapters/01.insertchapternamehere}
+\input{chapters/02.insertchapternamehere}
+\newpage
+
+\tableofcontents		% toc
+\addcontentsline{toc}{chapter}{Inhaltsverzeichnis}
+\ \\				% add additional space before chapter because removed per default
+\listoffigures			% lof
+\addcontentsline{toc}{chapter}{\listfigurename}
+\ \\
+\listoftables			% lot
+\addcontentsline{toc}{chapter}{\listtablename}
+%\ \\
+%\lstlistoflistings		% lol
+%\addcontentsline{toc}{chapter}{Listings}
+%\ \\
+%\chapter*{Abkürzungen}		% loa
+%\addcontentsline{toc}{chapter}{Abkürzungen}
+
+\endgroup			% End group to disable chapter auto newpage	
+
+%\begin{acronym}[XXXXXX]  	% use longer short form here
+%\acro{kurz}{lang}
+%\end{acronym}
+
+\mainmatter  			%% KOMA: arabic page numbers; books only
+
+\input{chapters/10.insertchapternamehere}
+%\input{chapters/50.dummy}
+% insert here
+
+\appendix 			% the following inputs are appendices
+\input{chapters/99.appendix}
+
+\printbibliography[title={Literaturverzeichnis},heading=bibintoc]
+\end{document}

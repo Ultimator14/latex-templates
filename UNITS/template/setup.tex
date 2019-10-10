@@ -1,0 +1,220 @@
+\synctex=1
+
+% ############ Global ############
+
+\documentclass[%
+    fontsize=11pt,
+	paper=A4,
+	parskip=half,
+	DIV=calc,
+	headinclude=true,
+	footinclude=true,
+	footheight=0cm,						% remove space under footer
+	appendixprefix=true,
+	bibliography=totoc,					% bibintoc
+	open=right,
+	oneside,
+    german
+]{scrbook}
+\usepackage[utf8]{inputenc}				% German Umlaut- and language support
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{csquotes}					% Use quotes of the correct language
+\input{template/info.tex}				% Basic information
+
+% ############ Seite/Header + Footer ############
+
+\usepackage[automark,headsepline,footsepline]{scrlayer-scrpage}			% Header + Footer
+\pagestyle{scrheadings}								% for customization for header and footer
+\renewcommand{\chapterpagestyle}{scrheadings}					% include header and footer on chapter pages
+\clearscrheadfoot								% avoid double page numbers
+\automark{chapter}
+\ihead{\headmark}
+\ifoot{\vspace{-0.25cm}\myTitle, \myAuthor}
+\ofoot{ \vspace{-0.25cm} \thepage}
+
+\usepackage[hang]{footmisc} 							% Footnotes space between number and content
+\usepackage{calc}								% Header Footer calculation
+%Normal
+\usepackage[left=1.7cm,right=1.7cm,top=2.7cm,bottom=2.7cm,footskip=0.5cm]{geometry}
+%BCOR 8mm
+%\usepackage[left=2.1cm,right=1.3cm,top=2.7cm,bottom=2.7cm,footskip=0.5cm]{geometry}
+
+\renewcommand{\chapterheadstartvskip}{}						% remove vertical space before chapter
+
+\usepackage{chngcntr}								% dont't reset footnote enumeration per  chapter
+\counterwithout{footnote}{chapter}
+
+% ############ Farben ############
+
+\usepackage[table, usenames, dvipsnames]{xcolor}
+
+\setkomafont{footsepline}{\color{HSColor}} 	 				% change colors of seperation lines
+\setkomafont{headsepline}{\color{HSColor}}
+\definecolor{DispositionColor}{RGB}{0,0,0}							
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{dark-green}{rgb}{0,0.6,0}
+\definecolor{NiceRed}{HTML}{EF3723}
+\definecolor{NiceBlue}{HTML}{4586DF}
+\definecolor{NiceGreen}{HTML}{00BD60}
+\definecolor{NiceYellow}{HTML}{FCEC0F}
+
+
+%\definecolor{LinkColor}{HTML}{ba0000}	% toc
+\definecolor{UrlColor}{HTML}{155196}	% url
+\definecolor{CiteColor}{HTML}{6200d9}	% cite (footnote references to first source)
+\definecolor{HSColor}{HTML}{003F61}	% HS Color (toc, footnoteline)
+
+% ############ Schriftart ############
+
+\usepackage{lmodern}								% Latin modern font
+
+\renewcommand{\headfont}{\normalfont\sffamily\color{DispositionColor}}
+\renewcommand{\pnumfont}{\normalfont\sffamily\color{DispositionColor}}
+\addtokomafont{disposition}{\color{DispositionColor}}
+\addtokomafont{caption}{\color{DispositionColor}\footnotesize}
+\addtokomafont{captionlabel}{\color{DispositionColor}}
+
+\usepackage[%									% Increase font quality
+protrusion=true, %
+factor=900       %
+]{microtype}
+
+% ############ Bilder ############
+
+\usepackage[pdftex]{graphicx}
+\addtokomafont{caption}{\small} 						% small captions
+\usepackage[font=small, labelfont=bf]{caption} 					%textwidth and format options break multiple images in a row
+\usepackage{subfig}								% caption und subfig break \footcite in captions. Workaround: \footnotemark in caption and \footcitetext{} below
+\usepackage{float}								% force the placement of graphics in text
+\usepackage{wrapfig}
+
+% ############ Source Code ############
+
+\usepackage{listings}
+
+% Syntax Highlighting JSON
+\lstdefinelanguage{genesis}{
+	morestring=[s]{"}{"},
+	stringstyle=\color{red},
+	comment=[l]{:},
+	commentstyle=\color{black},
+	literate=
+	*{\{}{{{\color{black}{\{}}}}{1}
+	{\}}{{{\color{black}{\}}}}}{1}
+	{,}{{{\color{black}{,}}}}{1},
+	%{,}{{{\color{black}{,}}}}{1}
+	%{\{}{{{\color{black}{\{}}}}{1}
+	%{\}}{{{\color{black}{\}}}}}{1},
+}
+
+\lstset{%
+	basicstyle=\footnotesize\ttfamily,	
+	keywordstyle=\color{blue},	 %default colors if predefined language is matched
+	commentstyle=\color{dark-green},
+	stringstyle=\color{red},
+	extendedchars=true,
+	captionpos=b,
+	backgroundcolor=\color{light-gray},
+	breakatwhitespace=false,
+	breaklines=true,
+	showspaces=false,                % dont show spaces as underscore
+	showtabs=false,                  % dont show tabs as underscore
+	showstringspaces=false,		 % dont show stringspaces as underscore
+	tabsize=2,
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	frame=lines,                     % adds a frame around the code
+	keepspaces=true,                 % keep code ident (possibly needs columns=flexible)
+	numbers=left,                    % line numbers (none, left, right)
+	numbersep=8pt,                   % how far the line-numbers are from the code
+	numberstyle=\tiny\color{gray},   % line-number style
+	rulecolor=\color{black},         % frame always black
+	stepnumber=1,                    % number every line
+	title=\lstname,                  % use filename as title
+	numberbychapter=false,
+	literate=%			 % escape äöüß
+	{Ö}{{\"O}}1
+	{Ä}{{\"A}}1
+	{Ü}{{\"U}}1
+	{ß}{{\ss}}1
+	{ü}{{\"u}}1
+	{ä}{{\"a}}1
+	{ö}{{\"o}}1
+}
+
+% Create framed, shaded, or differently highlighted regions that can 
+% break across pages.  The environments defined are 
+% \begin{itemize}
+%   \item framed: ordinary frame box (\verb+\fbox+) with edge at margin
+%   \item shaded: shaded background (\verb+\colorbox+) bleeding into margin
+%   \item snugshade: similar
+%   \item leftbar: thick vertical line in left margin
+% \end{itemize}
+\usepackage{framed}
+
+% ############ Tabellen ############
+
+\usepackage{booktabs}				% Table rules (\toprule \midrule \bottomrule)
+\usepackage{tabularx}				% Table width etc
+\usepackage{rotating}				% rotate stuff
+\renewcommand{\arraystretch}{1.5}		% more vertical space in tabular
+\usepackage{makecell} 				% linebreak in cells
+\usepackage{multirow}				% merge vertical cells
+
+% ############ Biblatex ############
+
+\usepackage[
+backend=biber,
+style=verbose,
+maxbibnames=99,
+]{biblatex}
+\addbibresource{sources.bib}
+
+% ############ Plots / Diagramme ############
+
+\usepackage{pgfplots}
+\pgfplotsset{
+	compat=1.12,
+}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+% ############ Mathe ############
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+% ############ Verschiedenes ############
+
+\usepackage[printonlyused]{acronym}		% abbreviations
+\usepackage{eurosym} 				% Required to use \euro for the euro symbol.
+\usepackage{pifont}  				% Sonderzeichen für Titelseite \ding{}
+\usepackage[normalem]{ulem}			% Linien unter Absätzen machbar
+\usepackage{eso-pic} 				% place absolute and relative
+\usepackage{enumitem}				% enumerations 1., 1.1, 1.1.1 etc.
+
+% ############ PDF ############
+
+% prevent club & widow penalty
+\clubpenalty10000
+\widowpenalty10000
+\displaywidowpenalty10000
+\pdfcompresslevel=9 		% 0-10
+\usepackage[%
+pdftitle={\myTitle},
+pdfauthor = {\myAuthor}anchorcolor = blue,
+pdfsubject = {\myTitle},
+pdfkeywords={\myKeywords},
+colorlinks={true},				% removes color frames and colors text
+linkcolor = HSColor,
+urlcolor = UrlColor,
+citecolor = CiteColor,
+pdfcreator={pdfTex},
+bookmarks=True, 
+bookmarksopen=false,				% Bookmarkcolumn is opened on pdf reader start
+pdfpagemode=UseOutlines,			% None, UseOutlines, UseThumbs, FullScreen
+plainpages=false 				% correct, if pdflatex complains: ``destination with same identifier already exists''
+% pdfpagelabels,
+%hidelinks,					% removes color and porder
+%breaklinks=true,
+]{hyperref}
