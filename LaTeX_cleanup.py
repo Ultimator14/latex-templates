@@ -6,9 +6,9 @@
 import os
 import re
 
-rootdir = "."
+rootdir = "../.."
 ignore_dirs_ = [".git"]
-delete_exts_ = [".aux", ".bbl", ".blg", ".lof", ".log", ".lol", ".lot", ".out", ".run.xml", ".synctex.gz", ".toc",
+delete_exts_ = [".aux", ".bbl", ".bib.bak", ".blg", ".lof", ".log", ".lol", ".lot", ".out", ".run.xml", ".synctex.gz", ".toc",
                 "-blx.bib", ".bcf", ".nav", ".snm", ".vrb"]
 
 ignore_dirs = [os.path.join(rootdir, dir_) for dir_ in ignore_dirs_]
