@@ -10,6 +10,7 @@ rootdir = "../.."
 ignore_dirs_ = [".git"]
 delete_exts_ = [".aux", ".bbl", ".bib.bak", ".blg", ".lof", ".log", ".lol", ".lot", ".out", ".run.xml", ".synctex.gz", ".toc",
                 "-blx.bib", ".bcf", ".nav", ".snm", ".vrb"]
+delete_files = ["texput.log"]
 
 ignore_dirs = [os.path.join(rootdir, dir_) for dir_ in ignore_dirs_]
 texfileregex = re.compile("^.+\.tex$")
@@ -25,7 +26,7 @@ for texfile_dir, texfile_noext in texfiles:
     delete_exts = [texfile_noext + ext for ext in delete_exts_]
 
     for file_ in os.listdir(texfile_dir):
-        if file_ in delete_exts:
+        if file_ in delete_exts or file_ in delete_files:
             file_to_remove = os.path.join(texfile_dir, file_)
             print("Deleting file " + file_to_remove)
             os.remove(file_to_remove)
