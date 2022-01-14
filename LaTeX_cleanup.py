@@ -6,7 +6,7 @@
 import os
 import re
 
-rootdir = "../.."
+rootdir = "."
 ignore_dirs_ = [".git"]
 delete_exts_ = [".aux", ".bbl", ".bib.bak", ".blg", ".lof", ".log", ".lol", ".lot", ".out", ".run.xml", ".synctex.gz", ".toc",
                 "-blx.bib", ".bcf", ".nav", ".snm", ".vrb"]
