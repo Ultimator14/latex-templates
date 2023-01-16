@@ -1,0 +1,3 @@
+TrumpetIII = \relative c' {
+
+}
