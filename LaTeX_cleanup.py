@@ -6,17 +6,18 @@
 import os
 import re
 
-rootdir = "."
+ROOT_DIR = "."
 ignore_dirs_ = [".git"]
 delete_exts_ = [".aux", ".bbl", ".bib.bak", ".blg", ".lof", ".log", ".lol", ".lot", ".out", ".run.xml", ".synctex.gz", ".toc",
-                "-blx.bib", ".bcf", ".nav", ".snm", ".vrb"]
+                "-blx.bib", ".bcf", ".nav", ".snm", ".vrb",
+                "fdb_latexmk", "fls"]
 delete_files = ["texput.log"]
 
-ignore_dirs = [os.path.join(rootdir, dir_) for dir_ in ignore_dirs_]
-texfileregex = re.compile("^.+\.tex$")
+ignore_dirs = [os.path.join(ROOT_DIR, dir_) for dir_ in ignore_dirs_]
+texfileregex = re.compile(r'^.+\.tex$')
 
-texfiles = list()
-for root, dirs, files in os.walk(rootdir, topdown=True):
+texfiles = []
+for root, dirs, files in os.walk(ROOT_DIR, topdown=True):
     if root not in ignore_dirs:
         for file_ in files:
             if re.match(texfileregex, file_):
