@@ -10,7 +10,7 @@ ROOT_DIR = "."
 ignore_dirs_ = [".git"]
 delete_exts_ = [".aux", ".bbl", ".bib.bak", ".blg", ".lof", ".log", ".lol", ".lot", ".out", ".run.xml", ".synctex.gz", ".toc",
                 "-blx.bib", ".bcf", ".nav", ".snm", ".vrb",
-                "fdb_latexmk", "fls"]
+                ".fdb_latexmk", ".fls"]
 delete_files = ["texput.log"]
 
 ignore_dirs = [os.path.join(ROOT_DIR, dir_) for dir_ in ignore_dirs_]
